@@ -1,16 +1,15 @@
-local RunService = game:GetService("RunService")
+local DynamicTween = require("../../../roblox_packages/DynamicTween")
+local LinearInterpolation = require("../../../roblox_packages/LinearInterpolation")
+local MathUtil = require("../../../roblox_packages/MathUtil")
+local TableUtil = require("../../../roblox_packages/TableUtil")
+local UserInputManager = require("../../../roblox_packages/UserInputManager")
+local vide = require("../../../roblox_packages/vide")
 
-local vide = require("../../../../roblox_packages/vide")
+local Types = require("../../Types")
 
-local DynamicTween = require("../../../../roblox_packages/DynamicTween")
-local LinearInterpolation = require("../../../../roblox_packages/LinearInterpolation")
-local MathUtil = require("../../../../roblox_packages/MathUtil")
-local TableUtil = require("../../../../roblox_packages/TableUtil")
-local Types = require("../../../Types")
-local UserInputManager = require("../../../../roblox_packages/UserInputManager")
+local theme = require("../../Contexts/Theme")
 
-local Button = require("../../../Components/Button")
-local theme = require("../../../Contexts/Theme")
+local Button = require("../Button")
 
 local effect = vide.effect
 local source = vide.source

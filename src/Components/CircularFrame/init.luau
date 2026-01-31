@@ -1,10 +1,11 @@
-local vide = require("../../../roblox_packages/vide")
+local TableUtil = require("../../roblox_packages/TableUtil")
+local vide = require("../../roblox_packages/vide")
 
-local Frame = require("../../Components/Frame")
-local Gradient = require("../../Components/UIComponent/Gradient")
-local TableUtil = require("../../../roblox_packages/TableUtil")
-local Types = require("../../Types")
-local VideKitUtils = require("../../Utils")
+local Frame = require("Frame")
+local Gradient = require("UIComponent/Gradient")
+
+local Types = require("../Types")
+local VideKitUtils = require("../Utils")
 
 local create = vide.create
 local read = vide.read

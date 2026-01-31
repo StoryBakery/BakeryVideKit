@@ -1,0 +1,15 @@
+{
+    "name": "BakeryVideKit",
+    "servePort": 35001,
+    "tree": {
+        "$className": "DataModel",
+        "ReplicatedStorage": {
+            "BakeryVideKit": {
+                "$path": "../src"
+            },
+            "Packages": {
+                "$path": "roblox_packages"
+            }
+        }
+    }
+}

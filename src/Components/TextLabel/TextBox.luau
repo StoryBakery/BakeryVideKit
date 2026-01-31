@@ -1,6 +1,5 @@
 --[=[
     @class TextBox
-    @tag vide
 ]=]
 
 local TableUtil = require("../../../roblox_packages/TableUtil")

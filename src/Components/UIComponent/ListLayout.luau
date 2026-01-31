@@ -1,11 +1,11 @@
 --[=[
     @class UIListLayoutWrapper
-    @tag vide
 ]=]
 
-local Types = require("../../Types")
 local TableUtil = require("../../../roblox_packages/TableUtil")
 local vide = require("../../../roblox_packages/vide")
+
+local Types = require(".././Types")
 
 local create = vide.create
 

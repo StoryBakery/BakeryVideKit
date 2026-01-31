@@ -1,70 +1,71 @@
 --[=[
 	@class Button
-	@tag vide
+	
 
 	Button 컴포넌트 (vide 기반)
 ]=]
 
-local vide = require("../../../roblox_packages/vide")
-local Types = require("../../Types")
-local TableUtil = require("../../../roblox_packages/TableUtil")
-local DynamicTween = require("../../../roblox_packages/DynamicTween")
-local LinearInterpolation = require("../../../roblox_packages/LinearInterpolation")
+local DynamicTween = require("../../roblox_packages/DynamicTween")
+local LinearInterpolation = require("../../roblox_packages/LinearInterpolation")
+local TableUtil = require("../../roblox_packages/TableUtil")
+local vide = require("../../roblox_packages/vide")
 
-local area = require("../../Contexts/Area")
-local theme = require("../../Contexts/Theme")
+local Types = require("../Types")
 
-local Frame = require("../../Components/Frame")
-local Padding = require("../../Components/UIComponent/Padding")
-local ListLayout = require("../../Components/UIComponent/ListLayout")
-local Scale = require("../../Components/UIComponent/Scale")
+local area = require("../Contexts/Area")
+local theme = require("../Contexts/Theme")
 
-local ButtonIcon = require("./ButtonIcon")
-local ButtonTextLabel = require("./ButtonTextLabel")
-local ButtonTooltip = require("./ButtonTooltip")
+local Frame = require("Frame")
+local ListLayout = require("UIComponent/ListLayout")
+local Padding = require("UIComponent/Padding")
+local Scale = require("UIComponent/Scale")
+
+local ButtonIcon = require("ButtonIcon")
+local ButtonTextLabel = require("ButtonTextLabel")
+local ButtonTooltip = require("ButtonTooltip")
 
 local create = vide.create
 local effect = vide.effect
 local source = vide.source
 local read = vide.read
 
-export type ButtonProps = Types.props<{
-	ButtonColor: Color3?,
-	HighlightColor: Color3?,
-	ClickEffectColor: Color3?,
-	AutoScaleEnabled: boolean?,
+export type ButtonProps =
+	Types.props<{
+		ButtonColor: Color3?,
+		HighlightColor: Color3?,
+		ClickEffectColor: Color3?,
+		AutoScaleEnabled: boolean?,
 
-	IconProps: ButtonIcon.ButtonIconProps?,
-	Icon: string?, --@Deprecated
-	IconContent: Content?,
-	IconColor: Color3?,
+		IconProps: ButtonIcon.ButtonIconProps?,
+		Icon: string?, --@Deprecated
+		IconContent: Content?,
+		IconColor: Color3?,
 
-	TextProps: ButtonTextLabel.ButtonTextLabelProps?,
-	Text: string?,
-	TextColor3: Color3?,
-	TextHighlight: Color3?,
-	TextSize: number?,
-	TextTransparency: number?,
-	TextXAlignment: Enum.TextXAlignment?,
-	TextYAlignment: Enum.TextYAlignment?,
-	TextScaled: boolean?,
-	FontFace: Font?,
+		TextProps: ButtonTextLabel.ButtonTextLabelProps?,
+		Text: string?,
+		TextColor3: Color3?,
+		TextHighlight: Color3?,
+		TextSize: number?,
+		TextTransparency: number?,
+		TextXAlignment: Enum.TextXAlignment?,
+		TextYAlignment: Enum.TextYAlignment?,
+		TextScaled: boolean?,
+		FontFace: Font?,
 
-	OnClick: (inputObject: InputObject) -> ()?,
-	OnEnter: () -> ()?,
-	OnLeave: () -> ()?,
-	OnMouseButton1Click: (inputObject: InputObject) -> ()?,
-	OnMouseButton2Click: (inputObject: InputObject) -> ()?,
-	OnMouseButton3Click: (inputObject: InputObject) -> ()?,
-	OnTouch: (inputObject: InputObject) -> ()?,
+		OnClick: (inputObject: InputObject) -> ()?,
+		OnEnter: () -> ()?,
+		OnLeave: () -> ()?,
+		OnMouseButton1Click: (inputObject: InputObject) -> ()?,
+		OnMouseButton2Click: (inputObject: InputObject) -> ()?,
+		OnMouseButton3Click: (inputObject: InputObject) -> ()?,
+		OnTouch: (inputObject: InputObject) -> ()?,
 
-	UIComponents: { any }?,
-	InternalChildren: { any }?,
+		UIComponents: { any }?,
+		InternalChildren: { any }?,
 
-	TooltipText: string?,
-}> & Frame.FrameProps
-
-
+		TooltipText: string?,
+	}>
+	& Frame.FrameProps
 
 type ColorSource = (Color3?) -> Color3?
 
@@ -126,7 +127,10 @@ local function createTextChild(props: ButtonProps, isHighlight)
 		TextColor3 = function()
 			local theme = theme()
 			local defaultColor = read(props.TextColor3) or theme.ButtonText
-			local highlightColor = read(props.TextHighlight) or read(props.TextColor3) or theme.TextHighlight or defaultColor
+			local highlightColor = read(props.TextHighlight)
+				or read(props.TextColor3)
+				or theme.TextHighlight
+				or defaultColor
 
 			if isHighlight() then
 				return highlightColor
@@ -361,7 +365,11 @@ local function insertChildIfPresent(target, child)
 	table.insert(target, child)
 end
 
-local function createInternalChildren(props: ButtonProps, isHighlight, tooltipController: TooltipController?)
+local function createInternalChildren(
+	props: ButtonProps,
+	isHighlight,
+	tooltipController: TooltipController?
+)
 	local internalChildren = {}
 
 	local iconChild = createIconChild(props)
@@ -428,7 +436,9 @@ type ClickEffectControllerParams = {
 	ClickEffectTransparency: () -> number,
 }
 
-local function createClickEffectController(params: ClickEffectControllerParams): ClickEffectController
+local function createClickEffectController(
+	params: ClickEffectControllerParams
+): ClickEffectController
 	local container = create("ScrollingFrame")({
 		Transparency = 1,
 		ClipsDescendants = true,
@@ -456,7 +466,10 @@ local function createClickEffectController(params: ClickEffectControllerParams):
 		local buttonPos = container.AbsolutePosition
 		local buttonSize = container.AbsoluteSize
 
-		local largestSize = math.max(buttonSize.X, buttonSize.Y) * math.pi / 2 / area().ResolutionScale
+		local largestSize = math.max(buttonSize.X, buttonSize.Y)
+			* math.pi
+			/ 2
+			/ area().ResolutionScale
 
 		clickEffect.Position = UDim2.fromOffset(
 			(position.X - buttonPos.X) / area().ResolutionScale,
@@ -628,7 +641,8 @@ local function Button(props: ButtonProps, forwardRef)
 		ClickEffectTransparency = getClickEffectTransparency,
 	})
 
-	local tooltipController = createTooltipController(props.TooltipText, clickEffectController.Folder)
+	local tooltipController =
+		createTooltipController(props.TooltipText, clickEffectController.Folder)
 	local internalChildren = createInternalChildren(props, isHighlight, tooltipController)
 
 	frameProps = applyFrameDefaults(frameProps, backgroundColor)

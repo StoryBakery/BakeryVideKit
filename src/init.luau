@@ -1,9 +1,9 @@
-local Types = require("./Types")
-local Utils = require("./Utils")
-local Modifier = require("./Modifier")
-local Props = require("./Props")
-local behavior = require("./Behaviors/behavior")
-local behaviorReactive = require("./Behaviors/behaviorReactive")
+local Modifier = require("@self/Modifier")
+local Props = require("@self/Props")
+local Types = require("@self/Types")
+local Utils = require("@self/Utils")
+local behavior = require("@self/Behaviors/behavior")
+local behaviorReactive = require("@self/Behaviors/behaviorReactive")
 
 local videKit = {}
 

@@ -26,8 +26,6 @@ DynamicTween = { repo = "https://github.com/StoryBakery/DynamicTween", rev = "ee
 LinearInterpolation = { repo = "https://github.com/StoryBakery/LinearInterpolation", rev = "c522819b5515edb45f1518244252f58c8f9e05ee" }
 UserInputManager = { repo = "https://github.com/StoryBakery/UserInputManager", rev = "f932f212b55f985c3126fb9804f07e604ca05470" }
 ExtendedTranslator = { repo = "https://github.com/StoryBakery/ExtendedTranslator", rev = "18d4b7a7c10950235d0d196eb3ad605b65208216" }
-setup-project-configs = { repo = "https://github.com/StoryBakery/setup-project-configs", rev = "5553c590815a3486243ab67ba718c37744c6befd" }
-pesde-gitrev = { repo = "https://github.com/StoryBakery/pesde-gitrev", rev = "037b48d1245da005deb4196dde2cee8868627f41" }
 
 [scripts]
 roblox_sync_config_generator = ".pesde/scripts/roblox_sync_config_generator.luau"
@@ -36,8 +34,12 @@ sourcemap_generator = ".pesde/scripts/sourcemap_generator.luau"
 [dev_dependencies]
 scripts = { name = "pesde/scripts_rojo", version = "^0.2.0", target = "lune" }
 rojo = { name = "pesde/rojo", version = "^7.5.1", target = "lune" }
+setup-project-configs = { repo = "https://github.com/StoryBakery/setup-project-configs", rev = "8e77c9722c25b0a4ea6ed1415ab18fc8db2ff9e2" }
+pesde-gitrev = { repo = "https://github.com/StoryBakery/pesde-gitrev", rev = "a2d6f1e71ac6264ff2b48fd2178271f80135772e" }
 
 [engines]
 pesde = "^0.7.0"
 lune = "^0.10.2"
+
+
 

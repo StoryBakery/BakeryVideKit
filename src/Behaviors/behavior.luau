@@ -3,7 +3,6 @@ local vide = require("../../roblox_packages/vide")
 local cleanup = vide.cleanup
 local action = vide.action
 
-
 local function behavior(setup, opts)
 	return action(function(instance)
 		local result = setup(instance)

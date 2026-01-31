@@ -1,17 +1,18 @@
-local vide = require("../../../../../roblox_packages/vide")
-
-local Types = require("../../../../Types")
 local DynamicTween = require("../../../../../roblox_packages/DynamicTween")
 local MathUtil = require("../../../../../roblox_packages/MathUtil")
 local TableUtil = require("../../../../../roblox_packages/TableUtil")
 local UserInputManager = require("../../../../../roblox_packages/UserInputManager")
+local vide = require("../../../../../roblox_packages/vide")
 
-local Frame = require("../../../../Components/Frame")
-local Gradient = require("../../../../Components/UIComponent/Gradient")
-local area = require("../../../../Contexts/Area")
-local theme = require("../../../../Contexts/Theme")
+local Types = require("../.././Types")
 
-local Slider = require(script.Parent)
+local Frame = require("../.././Components/Frame")
+local Gradient = require("../.././Components/UIComponent/Gradient")
+
+local area = require("../.././Contexts/Area")
+local theme = require("../.././Contexts/Theme")
+
+local Slider = require("./")
 
 local create = vide.create
 local source = vide.source

@@ -1,10 +1,11 @@
-local vide = require("../../../roblox_packages/vide")
+local TableUtil = require("../roblox_packages/TableUtil")
+local vide = require("../roblox_packages/vide")
+
+local Types = require("./Types")
+
 local create = vide.create
 local effect = vide.effect
 local source = vide.source
-
-local Types = require("../../Types")
-local TableUtil = require("../../../roblox_packages/TableUtil")
 
 export type LayerCollectorPortalProps = Types.props<{
 	Position: UDim2?,

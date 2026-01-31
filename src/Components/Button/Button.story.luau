@@ -1,21 +1,20 @@
-local vide = require("../../../roblox_packages/vide")
-
 local DynamicTween = require("../../../roblox_packages/DynamicTween")
 local LinearInterpolation = require("../../../roblox_packages/LinearInterpolation")
-
-local theme = require("../../Contexts/Theme")
-local Frame = require("../../Components/Frame")
-local TextLabel = require("../../Components/TextLabel")
-local Button = require("../../Components/Button")
-local ScrollingFrame = require("../../Components/ScrollingFrame")
-local Padding = require("../../Components/UIComponent/Padding")
-local ListLayout = require("../../Components/UIComponent/ListLayout")
 local TableUtil = require("../../../roblox_packages/TableUtil")
+local vide = require("../../../roblox_packages/vide")
+
+local Button = require("../Button")
+local Frame = require("../Frame")
+local ListLayout = require(".././Components/UIComponent/ListLayout")
+local Padding = require(".././Components/UIComponent/Padding")
+local ScrollingFrame = require(".././Components/ScrollingFrame")
+local TextLabel = require(".././Components/TextLabel")
+local theme = require(".././Contexts/Theme")
 
 local BuiltInThemes = {
-	Dark = require("../../BuiltInThemes/Dark"),
-	Light = require("../../BuiltInThemes/Light"),
-	DeepGrey = require("../../BuiltInThemes/DeepGrey"),
+	Dark = require(".././Context/Theme/BuiltInThemes/Dark"),
+	Light = require(".././Context/Theme/BuiltInThemes/Light"),
+	DeepGrey = require(".././Context/Theme/BuiltInThemes/DeepGrey"),
 }
 
 local create = vide.create
@@ -39,7 +38,7 @@ local function createThemeAnimator(themeName: vide.Source<string>, themeSource)
 		if not goalTheme then
 			return
 		end
-		
+
 		clearTweens()
 
 		for key, value in goalTheme do
@@ -112,17 +111,17 @@ local function App(props)
 	addThemeButton("Dark", 10)
 	addThemeButton("Light", 20)
 	addThemeButton("DeepGrey", 30)
-	
+
 	local proxyTheme = setmetatable({}, {
-        __index = function(_, k)
+		__index = function(_, k)
 			return themeSource()[k]
-        end,
-    })
-	
+		end,
+	})
+
 	return theme(proxyTheme, function()
 		createThemeAnimator(themeName, themeSource)
 
-		return Frame ({
+		return Frame({
 			Size = UDim2.fromScale(1, 1),
 			ScrollingFrame(themeSelectorProps),
 		})
@@ -133,7 +132,7 @@ return function(target)
 	local initialTheme = theme()
 
 	local unmount = mount(function()
-		return App({InitialTheme = initialTheme})
+		return App({ InitialTheme = initialTheme })
 	end, target)
 
 	return function()

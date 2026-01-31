@@ -1,8 +1,8 @@
+local UserInputManager = require("../../../../roblox_packages/UserInputManager")
 local vide = require("../../../../roblox_packages/vide")
 
-local UserInputManager = require("../../../../roblox_packages/UserInputManager")
+local Components = require("../../")
 
-local Components = require("../../../Components")
 local PopupMenu = Components.PopupMenu
 
 local function App()
@@ -104,13 +104,12 @@ local function App()
 			},
 		},
 	}
-	
 
 	return PopupMenu({
 		Buttons = menuData,
 		OnButtonSelected = onMenuSelected,
-		Size = UDim2.fromScale(.2, .3),
-		Position = UDim2.fromScale(.5, .3),
+		Size = UDim2.fromScale(0.2, 0.3),
+		Position = UDim2.fromScale(0.5, 0.3),
 		ExpandDirection = "Right",
 	})
 end

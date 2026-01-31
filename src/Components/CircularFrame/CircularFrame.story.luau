@@ -5,11 +5,12 @@
 local RunService = game:GetService("RunService")
 
 local vide = require("../../../roblox_packages/vide")
-local effect = vide.effect
-local source = vide.source
 
 local Components = require("../../Components")
 local UserInputManager = require("../../../roblox_packages/UserInputManager")
+
+local effect = vide.effect
+local source = vide.source
 
 local Frame = Components.Frame
 local CircularFrame = Components.CircularFrame

@@ -1,12 +1,11 @@
---!nolint UnknownGlobal
-local RunService = game:GetService("RunService")
 local PluginGuiService = game:GetService("PluginGuiService")
+local RunService = game:GetService("RunService")
 
-local vide = require("../../../roblox_packages/vide")
-local UserInputManager = require("../../../roblox_packages/UserInputManager")
-local ExtendedTranslator = require("../../../roblox_packages/ExtendedTranslator")
-local DynamicTimer = require("../../../roblox_packages/DynamicTimer")
-local UILabs = require("../../../roblox_packages/ui-labs")
+local DynamicTimer = require("../../roblox_packages/DynamicTimer")
+local ExtendedTranslator = require("../../roblox_packages/ExtendedTranslator")
+local UILabs = require("../../roblox_packages/ui-labs")
+local UserInputManager = require("../../roblox_packages/UserInputManager")
+local vide = require("../../roblox_packages/vide")
 
 local defaultUserInputManager = UserInputManager.GlobalUserInputManager
 if RunService:IsStudio() and UILabs.Environment.IsStory() then
@@ -38,6 +37,5 @@ local area = vide.context({
 	}),
 	Timer = DynamicTimer.UITimer,
 })
-
 
 return area

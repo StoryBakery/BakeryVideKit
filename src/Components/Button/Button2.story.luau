@@ -1,19 +1,19 @@
-
-local vide = require("../../../roblox_packages/vide")
-local mount = vide.mount
-local source = vide.source
-
 local DynamicTimer = require("../../../roblox_packages/DynamicTimer")
 local DynamicTween = require("../../../roblox_packages/DynamicTween")
 local LinearInterpolation = require("../../../roblox_packages/LinearInterpolation")
 local UserInputManager = require("../../../roblox_packages/UserInputManager")
+local vide = require("../../../roblox_packages/vide")
 
 local theme = require("../../Contexts/Theme")
-local Button = require("../../Components/Button")
+
+local Button = require(".././Components/Button")
+
+local mount = vide.mount
+local source = vide.source
 
 local function BeatButton(props)
 	local theme = theme()
-	
+
 	local progressFromClick = source(0)
 	local clickTween: DynamicTween.DynamicTween
 
@@ -33,7 +33,7 @@ local function BeatButton(props)
 
 		clickTween:Play()
 	end
-	
+
 	return Button({
 		Icon = "rbxassetid://11722865980",
 		Text = "Click Me",
@@ -53,7 +53,7 @@ local function BeatButton(props)
 			Color3.fromRGB(255, 0, 212),
 			progressFromClick()
 		),
-		
+
 		OnClick = startUpdatingProgressOnClick,
 	})
 end

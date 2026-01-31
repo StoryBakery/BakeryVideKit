@@ -14,8 +14,8 @@ export type child =
 	| { [number]: child } -- 트리 (배열처럼)
 	| action
 
+--[[
 export type function props(props: type)
-	-- 원본 Props의 각 프로퍼티를 T | (() -> T) 로 변환
 	for key, prop in props:properties() do
 		props:setproperty(
 			key,
@@ -25,9 +25,10 @@ export type function props(props: type)
 
 	props:setindexer(types.number, types.any)
 
-	return props
+	return propsw
 end
-
+]]
+export type props<T> = T & any
 
 export type prop<T> = T | () -> T
 

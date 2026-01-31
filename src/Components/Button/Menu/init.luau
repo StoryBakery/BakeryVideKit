@@ -1,16 +1,17 @@
-local vide = require("../../../../roblox_packages/vide")
+local TableUtil = require("../../../roblox_packages/TableUtil")
+local UserInputManager = require("../../../roblox_packages/UserInputManager")
+local vide = require("../../../roblox_packages/vide")
+
+local Types = require("../../Types")
+
+local Button = require("../Button")
+local SelectableButton = require("SelectableButton")
+local TextLabel = require("../../TextLabel")
+local theme = require("../../Contexts/Theme")
+
+local MenuItemContainer = require("MenuItemContainer")
+
 local create = vide.create
-
-local TableUtil = require("../../../../roblox_packages/TableUtil")
-local Types = require("../../../Types")
-local UserInputManager = require("../../../../roblox_packages/UserInputManager")
-
-local Button = require("../../../Components/Button")
-local SelectableButton = require("../../../Components/Button/SelectableButton")
-local TextLabel = require("../../../Components/TextLabel")
-local theme = require("../../../Contexts/Theme")
-
-local MenuItemContainer = require(script.MenuItemContainer)
 
 local EMPTY_TABLE = {}
 

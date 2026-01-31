@@ -1,19 +1,20 @@
-local vide = require("../../.././roblox_packages/vide")
+local DynamicTween = require("../../../roblox_packages/DynamicTween")
+local LinearInterpolation = require("../../../roblox_packages/LinearInterpolation")
+local MathUtil = require("../../../roblox_packages/MathUtil")
+local TableUtil = require("../../../roblox_packages/TableUtil")
+local UserInputManager = require("../../../roblox_packages/UserInputManager")
+local vide = require("../../../roblox_packages/vide")
 
-local DynamicTween = require("../../.././roblox_packages/DynamicTween")
-local LinearInterpolation = require("../../.././roblox_packages/LinearInterpolation")
-local MathUtil = require("../../.././roblox_packages/MathUtil")
-local TableUtil = require("../../.././roblox_packages/TableUtil")
-local Types = require("../.././Types")
-local UserInputManager = require("../../.././roblox_packages/UserInputManager")
+local Types = require("../../Types")
 
-local Button = require("../.././Components/Button")
-local Frame = require("../.././Components/Frame")
-local ListLayout = require("../.././Components/UIComponent/ListLayout")
-local ScrollingFrame = require("../.././Components/ScrollingFrame")
-local SizeConstraint = require("../.././Components/UIComponent/SizeConstraint")
-local TextLabel = require("../.././Components/TextLabel")
-local theme = require("../.././Contexts/Theme")
+local Button = require("../Button")
+local Frame = require("../../Frame")
+local ListLayout = require("../../UIComponent/ListLayout")
+local ScrollingFrame = require("../../ScrollingFrame")
+local SizeConstraint = require("../../UIComponent/SizeConstraint")
+local TextLabel = require("../../TextLabel")
+
+local theme = require("../../Contexts/Theme")
 
 local source = vide.source
 local create = vide.create
@@ -276,7 +277,7 @@ local function MenuLevel(props: MenuLevelProps)
 		AnchorPoint = Vector2.new(0, 0),
 		BackgroundTransparency = 1,
 		BorderSizePixel = 0,
-		Size = UDim2.new(0, 1),
+		Size = UDim2.fromScale(0, 1),
 		AutomaticSize = Enum.AutomaticSize.XY,
 		ClipsDescendants = true,
 		LayoutOrder = if expandDirection == "Right" then level else -level,

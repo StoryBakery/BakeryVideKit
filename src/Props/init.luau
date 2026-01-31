@@ -1,9 +1,16 @@
-local Modifier = require("../Modifier")
-
+local Modifier = require("Modifier")
 
 local Props = {}
 
-local function applyStringKeys(target, source, traceByKey, originByKey, originTag, opts, disallowEventKeys)
+local function applyStringKeys(
+	target,
+	source,
+	traceByKey,
+	originByKey,
+	originTag,
+	opts,
+	disallowEventKeys
+)
 	if source == nil then
 		return
 	end
@@ -150,7 +157,15 @@ function Props.composePropsDev(base, rest, props, opts)
 		local item = props[index]
 		if Modifier.isModifier(item) then
 			checkArrayContinuity(("modifier #%d"):format(index), item)
-			applyStringKeys(out, item, traceByKey, originByKey, ("Modifier#%d"):format(index), opts, true)
+			applyStringKeys(
+				out,
+				item,
+				traceByKey,
+				originByKey,
+				("Modifier#%d"):format(index),
+				opts,
+				true
+			)
 		end
 	end
 

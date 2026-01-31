@@ -35,3 +35,8 @@ wally.lock
 /node_modules
 /build
 
+tmp
+
+# Roblox
+TestPlace.rbxl
+TestPlace.rbxl.lock

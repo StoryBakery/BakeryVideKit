@@ -1,25 +1,26 @@
 --[=[
 	@class Slider
-	@tag vide
+	
 
 	SelectableButton 기반 슬라이더 컴포넌트입니다. 마우스나 터치 드래그를 delta 값으로 변환해 상위로 전달합니다.
 ]=]
 
 local RunService = game:GetService("RunService")
 
-local vide = require("../../../../../roblox_packages/vide")
+local TableUtil = require("../../../../roblox_packages/TableUtil")
+local UserInputManager = require("../../../../roblox_packages/UserInputManager")
+local vide = require("../../../../roblox_packages/vide")
+
+local Types = require("../../../Types")
+
+local Button = require("../../Button")
+local Frame = require("../../Frame")
+local ListLayout = require("../../UIComponent/ListLayout")
+local SelectableButton = require("../SelectableButton")
+local area = require("../../../Contexts/Area")
+local theme = require("../../../Contexts/Theme")
+
 local source = vide.source
-
-local Types = require("../../../../Types")
-local TableUtil = require("../../../../../roblox_packages/TableUtil")
-local UserInputManager = require("../../../../../roblox_packages/UserInputManager")
-
-local Button = require("../../../../Components/Button")
-local Frame = require("../../../../Components/Frame")
-local ListLayout = require("../../../../Components/UIComponent/ListLayout")
-local SelectableButton = require("../../../../Components/Button/SelectableButton")
-local area = require("../../../../Contexts/Area")
-local theme = require("../../../../Contexts/Theme")
 
 export type SliderProps =
 	Types.props<{

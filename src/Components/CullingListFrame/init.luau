@@ -1,6 +1,6 @@
 --[=[
 	@class CullingListFrame
-	@tag vide
+	
 
 	버추얼 스크롤이 필요한 긴 리스트를 렌더링하는 videKit 컴포넌트입니다.
 	보이지 않는 요소는 생성하지 않고, 스크롤 위치 변경 시 자연스러운 페이드/슬라이드 애니메이션을 제공합니다.
@@ -8,15 +8,17 @@
 
 local RunService = game:GetService("RunService")
 
-local vide = require("../.././roblox_packages/vide")
-local DynamicTween = require("../.././roblox_packages/DynamicTween")
-local LinearInterpolation = require("../.././roblox_packages/LinearInterpolation")
+local DynamicTween = require("../roblox_packages/DynamicTween")
+local LinearInterpolation = require("../roblox_packages/LinearInterpolation")
+local vide = require("../roblox_packages/vide")
 
-local area = require(".././Contexts/Area")
-local theme = require(".././Contexts/Theme")
-local Types = require(".././Types")
-local Button = require(".././Components/Button")
-local Frame = require(".././Components/Frame")
+local Button = require("./Button")
+local Frame = require("./Frame")
+
+local Types = require("./Types")
+
+local area = require("./Contexts/Area")
+local theme = require("./Contexts/Theme")
 
 local create = vide.create
 local effect = vide.effect
@@ -58,27 +60,29 @@ type ElementEntry = ElementLike | {
 	.SortOrder "Name" | "Order" | "Index"? -- 요소 정렬 기준입니다. 기본값 "Index".
 	.ReversesAlignment boolean? -- true 일 경우 정렬 방향과 스크롤 방향을 반대로 적용합니다.
 ]=]
-export type CullingListFrameProps = Types.props<{
-	ScrollingEnabled: boolean?,
-	ScrollingDirection: "X" | "Y"?,
-	CursorIndex: number?,
+export type CullingListFrameProps =
+	Types.props<{
+		ScrollingEnabled: boolean?,
+		ScrollingDirection: "X" | "Y"?,
+		CursorIndex: number?,
 
-	ScrollBarVisible: boolean?,
-	ScrollBarThickness: number?,
-	ScrollBarColor: Color3?,
-	ScrollDeltaScale: number?,
+		ScrollBarVisible: boolean?,
+		ScrollBarThickness: number?,
+		ScrollBarColor: Color3?,
+		ScrollDeltaScale: number?,
 
-	FadeDuration: number?,
+		FadeDuration: number?,
 
-	CullingFadeColor: Color3?,
-	CullingFadeTransparency: number?,
-	Elements: { ElementEntry },
+		CullingFadeColor: Color3?,
+		CullingFadeTransparency: number?,
+		Elements: { ElementEntry },
 
-	OnCursorChange: (delta: number) -> ()?,
+		OnCursorChange: (delta: number) -> ()?,
 
-	SortOrder: "Name" | "Order" | "Index"?,
-	ReversesAlignment: boolean?,
-}> & Frame.FrameProps
+		SortOrder: "Name" | "Order" | "Index"?,
+		ReversesAlignment: boolean?,
+	}>
+	& Frame.FrameProps
 
 type PropElementInfo = {
 	Key: any,
@@ -288,7 +292,8 @@ local function CullingListFrame(props: CullingListFrameProps, forwardedRef)
 
 	local getElementCanvasGroupSizesByKey, setElementCanvasGroupSizesByKey =
 		createState({} :: { [any]: number })
-	local getIndexChangeInfosByKey, setIndexChangeInfosByKey = createState({} :: { [any]: IndexChangeInfo })
+	local getIndexChangeInfosByKey, setIndexChangeInfosByKey =
+		createState({} :: { [any]: IndexChangeInfo })
 
 	local getCursorProgress, setCursorProgress = createState(0)
 	local getScrollBarPosition, setScrollBarPosition = createState(0)
@@ -352,10 +357,10 @@ local function CullingListFrame(props: CullingListFrameProps, forwardedRef)
 				info.Key = getElementKey(element, index)
 				info.ElementFactory = resolveElementFactory(
 					(
-						if type(element) == "table" and element.Element ~= nil
-						then element.Element
-						else element
-					) :: ElementLike
+							if type(element) == "table" and element.Element ~= nil
+								then element.Element
+								else element
+						) :: ElementLike
 				)
 				info.Index = index
 
@@ -378,10 +383,10 @@ local function CullingListFrame(props: CullingListFrameProps, forwardedRef)
 					info.Key = getElementKey(element, name)
 					info.ElementFactory = resolveElementFactory(
 						(
-							if type(element) == "table" and element.Element ~= nil
-							then element.Element
-							else element
-						) :: ElementLike
+								if type(element) == "table" and element.Element ~= nil
+									then element.Element
+									else element
+							) :: ElementLike
 					)
 				end
 				table.insert(newPropElementInfosByIndex, info)
@@ -488,10 +493,9 @@ local function CullingListFrame(props: CullingListFrameProps, forwardedRef)
 
 		setFrameSize(scrollingFrame.AbsoluteSize[getScrollingDirection()])
 
-		local conn =
-			scrollingFrame:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
-				setFrameSize(scrollingFrame.AbsoluteSize[getScrollingDirection()])
-			end)
+		local conn = scrollingFrame:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
+			setFrameSize(scrollingFrame.AbsoluteSize[getScrollingDirection()])
+		end)
 
 		cleanup(function()
 			conn:Disconnect()
@@ -554,11 +558,7 @@ local function CullingListFrame(props: CullingListFrameProps, forwardedRef)
 
 		local conn = RunService.RenderStepped:Connect(function(dt)
 			setScrollBarPosition(function(old)
-				return LinearInterpolation.number(
-					old,
-					getCursorProgress(),
-					1 - 0.005 ^ dt
-				)
+				return LinearInterpolation.number(old, getCursorProgress(), 1 - 0.005 ^ dt)
 			end)
 		end)
 
@@ -787,11 +787,8 @@ local function CullingListFrame(props: CullingListFrameProps, forwardedRef)
 			end
 
 			canvasGroup.ZIndex = index
-			canvasGroup.BackgroundTransparency = LinearInterpolation.number(
-				getCullingFadeTransparency(),
-				1,
-				progress
-			)
+			canvasGroup.BackgroundTransparency =
+				LinearInterpolation.number(getCullingFadeTransparency(), 1, progress)
 
 			table.insert(elementCanvasGroups, canvasGroup)
 		end
@@ -1103,12 +1100,7 @@ local function CullingListFrame(props: CullingListFrameProps, forwardedRef)
 				return UDim2.new(1, if getScrollBarVisible() then -scrollBarOffset else 0, 1, 0)
 			end
 
-			return UDim2.new(
-				1,
-				0,
-				1,
-				if getScrollBarVisible() then -scrollBarOffset else 0
-			)
+			return UDim2.new(1, 0, 1, if getScrollBarVisible() then -scrollBarOffset else 0)
 		end,
 	}
 

@@ -4,7 +4,6 @@ local action = vide.action
 local cleanup = vide.cleanup
 local effect = vide.effect
 
-
 local function behaviorReactive(setup, opts)
 	return action(function(instance)
 		local result = setup(instance)

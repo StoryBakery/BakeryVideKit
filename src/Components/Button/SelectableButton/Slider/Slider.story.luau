@@ -1,9 +1,8 @@
-local vide = require("../../../../../roblox_packages/vide")
-
 local MathUtil = require("../../../../../roblox_packages/MathUtil")
 local TableUtil = require("../../../../../roblox_packages/TableUtil")
+local vide = require("../../../../../roblox_packages/vide")
 
-local Frame = require("../../../../Components/Frame")
+local Frame = require("../.././Components/Frame")
 
 local RangeSlider = require("./RangeSlider")
 local Slider = require("./")

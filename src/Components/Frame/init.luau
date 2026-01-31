@@ -1,15 +1,16 @@
 --[=[
     @class Frame
-    @tag vide
 
     Roblox Frame 기반의 래퍼 컴포넌트입니다. 테마 색상과 공통 Corner/Stroke를 적용하고,
     전달된 children 을 숫자 인덱스 순서로 병합해 반환합니다.
 ]=]
 
-local theme = require("../../Contexts/Theme")
-local Props = require("../../Props")
-local vide = require("../../../roblox_packages/vide")
-local Types = require("../../Types")
+local vide = require("../../roblox_packages/vide")
+
+local Props = require("../Props")
+local Types = require("../Types")
+
+local theme = require("../Contexts/Theme")
 
 local create = vide.create
 local read = vide.read

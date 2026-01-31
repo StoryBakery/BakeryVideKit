@@ -1,15 +1,15 @@
 --[=[
     @class ImageLabel
-    @tag vide
 
     Frame 기반으로 이미지를 렌더링하는 래퍼입니다. Frame 기본 props 를 유지하면서
     Roblox ImageLabel 속성을 안전하게 전달합니다.
 ]=]
 
-local Frame = require("../../Components/Frame")
-local Props = require("../../Props")
-local Types = require("../../Types")
-local vide = require("../../../roblox_packages/vide")
+local vide = require("../../roblox_packages/vide")
+
+local Frame = require("Frame")
+local Props = require("../Props")
+local Types = require("../Types")
 
 local read = vide.read
 local derive = vide.derive

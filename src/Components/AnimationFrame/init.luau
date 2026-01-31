@@ -1,11 +1,12 @@
 local RunService = game:GetService("RunService")
 
-local TableUtil = require("../../../roblox_packages/TableUtil")
+local TableUtil = require("../roblox_packages/TableUtil")
 
-local vide = require("../../../roblox_packages/vide")
+local vide = require("../roblox_packages/vide")
 
-local Types = require("../../Types")
-local ImageLabel = require("../../Components/ImageLabel")
+local ImageLabel = require("./ImageLabel")
+
+local Types = require("./Types")
 
 local effect = vide.effect
 local source = vide.source
@@ -20,7 +21,6 @@ export type AnimationFrameProps =
 	}>
 	& ImageLabel.ImageLabelProps
 
-	
 local function getInitialFrame(props, totalFrames): number
 	if props.Frame ~= nil and totalFrames > 0 then
 		return math.clamp(props.Frame, 1, totalFrames) -- props.Frame이 있으면 해당 값으로, 범위 제한

@@ -1,10 +1,12 @@
-local TableUtil = require("../../../roblox_packages/TableUtil")
-local Types = require("../../Types")
-local area = require("../../Contexts/Area")
-local theme = require("../../Contexts/Theme")
-local vide = require("../../../roblox_packages/vide")
+local TableUtil = require("../../roblox_packages/TableUtil")
+local vide = require("../../roblox_packages/vide")
 
-local Frame = require("../../Components/Frame")
+local Types = require("../Types")
+
+local area = require("../Contexts/Area")
+local theme = require("../Contexts/Theme")
+
+local Frame = require("./Frame")
 
 export type ScrollingFrameProps =
 	Types.props<{
